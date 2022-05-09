@@ -1,5 +1,5 @@
 import * as yup from 'yup'
-import { firestore } from '../../services/firebase'
+import { firestore } from 'src/utils/firebase'
 
 export default async function handler(req, res) {
   switch (req.method) {
@@ -10,6 +10,7 @@ export default async function handler(req, res) {
           .object()
           .shape({
             title: yup.string().required().min(3),
+            preview: yup.string().required().min(5),
             content: yup.string().required().min(5),
           })
           .validate(req.body, { abortEarly: false })
